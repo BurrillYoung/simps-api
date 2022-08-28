@@ -23,15 +23,6 @@ class App extends Component {
         
         <div className="container">
           <div className="row">
-            {
-              
-                this.state.apiData.map((person) => {
-                  return <Character person={person} />
-                }
-              )
-          }
-          </div>
-          <div className="row">
             <div className="col-12">
               <div className="card">
                 <div class="card-body">
@@ -40,6 +31,16 @@ class App extends Component {
               </div> 
             </div>
           </div>
+          <div className="row">
+            {
+              
+                this.state.apiData.map((person) => {
+                  return <Character person={person} />
+                }
+              )
+          }
+          </div>
+          
         </div>
       )
     }
