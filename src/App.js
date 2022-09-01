@@ -12,30 +12,37 @@ class App extends Component {
     const apiData = await axios.get(
       "https://thesimpsonsquoteapi.glitch.me/quotes?count=48"
     );
-
+    apiData.data.forEach((element,index) => {
+      element.id = index;
+    });
     this.setState({ apiData: apiData.data });
+  }
+
+  deleteCharacter = (quote) =>{
+    const copy = [...this.state.apiData];
+
+    const index = copy.findIndex(item => {
+    
+      return item.quote === quote;
+    });
+    console.log(index);
+    copy.splice(index, 1);
+
+    this.setState({apiData: copy});
   }
 
   render() {
     console.log(this.state.apiData);
+
+
     if (this.state.apiData) {
       return (
         
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="card">
-                <div class="card-body">
-                 <Counter/>
-                </div>
-              </div> 
-            </div>
-          </div>
+        <div className="container mt-5">
           <div className="row">
             {
-              
                 this.state.apiData.map((person) => {
-                  return <Character person={person} />
+                  return <Character key={person.id} deleteCharacter={this.deleteCharacter} person={person} />
                 }
               )
           }
