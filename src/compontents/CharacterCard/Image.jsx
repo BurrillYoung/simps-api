@@ -4,7 +4,7 @@ class Image extends Component {
 
   render() { 
     return (
-      <img className={this.props.direction} src={this.props.srcURL} />
+      <img alt={this.props.direction} className={this.props.direction} src={this.props.srcURL} />
     );
   }
 }
